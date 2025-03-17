@@ -4,10 +4,8 @@
   border-radius: 10px;
 }
 
-.nav-item.active a.nav-link {
-  color: red;
+.active {
+  color: red !important;
+  background-color: yellow !important;
 }
 
-.nav-item.active {
-  background-color: yellow;
-}

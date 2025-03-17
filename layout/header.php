@@ -4,69 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CÔNG TY ABC</title>
-    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../public/css/style.css">
+    <title>CÔNG TY</title>
+    <link rel="stylesheet" href="./public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./public/css/style.css">
 </head>
 
 <body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <div class="container">
-                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="collapsibleNavId">
-                    <?php       
-                        // var_dump($_SERVER['REQUEST_URI']);
-                        $path = $_SERVER['REQUEST_URI'];
-                        $path = trim($path, '/');
-                        $path = explode('/', $path);
-                        $realpath = $path[0];
-                    ?>
-                    <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-                        <li class="nav-item me-5 <?= ($realpath == 'nhanvien') ? 'active' : '' ?>">
-                            <a class="nav-link" href="../nhanvien/">Nhân Viên</a>
-                        </li>
-                        <li class="nav-item <?= ($realpath == 'phongban') ? 'active' : '' ?>">
-                            <a class="nav-link" href="../phongban/">Phòng Ban</a>
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
-
+    <div class="container">
+        <div class="d-flex ">
+            <a href="?c=department&a=index"
+                class="<?php global $c; if($c == 'department') {echo 'active';} else {echo '';}?> btn btn-info text-white me-3">Department</a>
+            <a href="?c=employee&a=index"
+                class="<?php  if($c  == 'employee') {echo 'active';} else {echo '';}?> btn btn-info text-white">Employee</a>
+        </div>
 
         <?php 
-
-            
-            $message = '';
-            $nhom = '';
-            session_start();
+            $loiNhan = '';
+            $phanLoai = '';
             if(isset($_SESSION['success'])) {
-                $message = $_SESSION['success'];
-                $nhom = 'success';
+                $loiNhan = $_SESSION['success'];
+                $phanLoai = 'success';
                 unset($_SESSION['success']);
             }
             else if(isset($_SESSION['error'])) {
-                $message = $_SESSION['error'];
-                $nhom = 'danger';
+                $loiNhan = $_SESSION['error'];
+                $phanLoai = 'danger';
                 unset($_SESSION['error']);
             }
 
-            if($message != '') :
+            if($loiNhan) :
         ?>
-        <div class='alert alert-<?= $nhom ?> text-center'>
-            <?= $message ?>
+        <div class="alert alert-<?= $phanLoai ?> text-center">
+            <?= $loiNhan ?>
         </div>
-
-        <?php endif ?>
-
-
-
-
-    </div>
+        <?php endif; ?>

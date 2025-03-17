@@ -1,4 +1,4 @@
-$('button.delete').click(function () {
-    const duongTruyen = $(this).attr('truyenBien');
-    $('.modal-footer a').attr('href', duongTruyen);
-})
+$('button.delete').click(function () { 
+    const attr = $(this).attr('data-href');
+    $('.modal-footer a').attr('href', attr);
+});
